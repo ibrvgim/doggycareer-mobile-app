@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 function SearchingSystem() {
   return (
-    <View className='flex-row w-full px-4 py-6 bg-rose-200'>
+    <View className='flex-row w-full px-4 py-6 bg-blue-50 border-b-[1px] border-b-gray-300'>
       <View className='flex-1 overflow-hidden rounded-l-full border-r-[1px] border-r-gray-300'>
         <Input
           placeholder='Job Title'

@@ -1,13 +1,16 @@
-import { Tabs } from 'expo-router';
+import { Tabs, useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
+import { Pressable } from 'react-native';
 
 export default function TabsLayout() {
+  const route = useRouter();
+
   return (
     <Tabs
       screenOptions={{
-        headerShown: false,
         tabBarLabelStyle: {
-          fontWeight: '600',
+          fontWeight: '500',
+          color: 'rgb(8 145 178)',
         },
       }}
     >
@@ -15,8 +18,12 @@ export default function TabsLayout() {
         name='index'
         options={{
           title: 'Search Jobs',
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name='search-outline' size={size - 2} color={color} />
+          tabBarIcon: ({ size, focused }) => (
+            <Ionicons
+              name={focused ? 'search' : 'search-outline'}
+              size={size - 2}
+              color='rgb(8 145 178)'
+            />
           ),
         }}
       />
@@ -25,11 +32,11 @@ export default function TabsLayout() {
         name='recommendations'
         options={{
           title: 'Suggested You',
-          tabBarIcon: ({ color, size, focused }) => (
+          tabBarIcon: ({ size, focused }) => (
             <Ionicons
               name={focused ? 'paper-plane' : 'paper-plane-outline'}
               size={size - 2}
-              color={color}
+              color='rgb(8 145 178)'
             />
           ),
         }}
@@ -39,11 +46,11 @@ export default function TabsLayout() {
         name='myJobs'
         options={{
           title: 'My Jobs',
-          tabBarIcon: ({ color, size, focused }) => (
+          tabBarIcon: ({ size, focused }) => (
             <Ionicons
               name={focused ? 'heart' : 'heart-outline'}
               size={size - 1}
-              color={color}
+              color='rgb(8 145 178)'
             />
           ),
         }}
@@ -53,12 +60,25 @@ export default function TabsLayout() {
         name='profile'
         options={{
           title: 'Profile',
-          tabBarIcon: ({ color, size, focused }) => (
+          tabBarIcon: ({ size, focused }) => (
             <Ionicons
               name={focused ? 'person' : 'person-outline'}
               size={size - 2}
-              color={color}
+              color='rgb(8 145 178)'
             />
+          ),
+
+          headerRight: () => (
+            <Pressable
+              className='px-3 text-cyan-600'
+              onPress={() => route.push('/settings')}
+            >
+              <Ionicons
+                name='settings-outline'
+                size={22}
+                color='rgb(8 145 178)'
+              />
+            </Pressable>
           ),
         }}
       />

@@ -1,22 +1,42 @@
+import LoadingScreen from '@/components/general/LoadingScreen';
 import CompanyDetailCard from '@/components/jobs/CompanyDetailCard';
 import JobActionButtons from '@/components/jobs/JobActionButtons';
 import JobContent from '@/components/jobs/JobContent';
 import JobInfoBadges from '@/components/jobs/JobInfoBadges';
-import SuggestedJobCard from '@/components/jobs/SuggestedJobCard';
+import SuggestedJobsList from '@/components/jobs/SuggestedJobsList';
+import useGetSingleJobs from '@/hooks/jobs/useGetSingleJob';
+import { jobPosted } from '@/utilities/jobPosted';
 import { useLocalSearchParams } from 'expo-router';
-import { Pressable, ScrollView, Text, View } from 'react-native';
+import {
+  ActivityIndicator,
+  Pressable,
+  ScrollView,
+  Text,
+  View,
+} from 'react-native';
 
 function JobDetailsScreen() {
-  const { id } = useLocalSearchParams();
+  const { id }: { id?: string } = useLocalSearchParams();
+  const { isPending, job } = useGetSingleJobs(id as string);
+  if (!id) return;
+
+  console.log(isPending);
+
+  if (isPending) return <LoadingScreen />;
 
   return (
     <ScrollView className='flex-1 border-t-[1px] bg-white border-t-gray-300'>
       <View className='px-5 pt-8'>
         <Text className='text-2xl font-bold opacity-90 text-cyan-700 tracking-widest mb-6'>
-          Junior Frontend Developer
+          {job?.jobTitle}
         </Text>
 
-        <JobInfoBadges />
+        <JobInfoBadges
+          companyName={job?.companyName}
+          location={job?.location}
+          jobType={job?.jobType}
+          postedAt={jobPosted(job?.postedAt)}
+        />
         <JobActionButtons />
         <JobContent />
 
@@ -38,14 +58,7 @@ function JobDetailsScreen() {
         <Text className='text-2xl font-semibold text-cyan-700 tracking-wider mb-8'>
           Other Job Suggestions
         </Text>
-
-        <View className='flex-col'>
-          <SuggestedJobCard />
-          <SuggestedJobCard />
-          <SuggestedJobCard />
-          <SuggestedJobCard />
-          <SuggestedJobCard />
-        </View>
+        <SuggestedJobsList jobId={id} />
       </View>
     </ScrollView>
   );

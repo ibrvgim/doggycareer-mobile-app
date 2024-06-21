@@ -1,13 +1,17 @@
-import SafeAreaContainer from '@/components/general/SafeAreaContainer';
-import { Text, View } from 'react-native';
+import JobCard from '@/components/jobs/JobCard';
+import { ScrollView, StatusBar, View } from 'react-native';
 
 function RecommendationsScreen() {
   return (
-    <SafeAreaContainer>
-      <View>
-        <Text>Recommendations Screen</Text>
-      </View>
-    </SafeAreaContainer>
+    <View>
+      <StatusBar barStyle={'dark-content'} />
+
+      <ScrollView>
+        {/* <JobCard />
+        <JobCard />
+        <JobCard /> */}
+      </ScrollView>
+    </View>
   );
 }
 

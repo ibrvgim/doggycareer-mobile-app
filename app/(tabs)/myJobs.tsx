@@ -1,13 +1,32 @@
-import SafeAreaContainer from '@/components/general/SafeAreaContainer';
-import { Text, View } from 'react-native';
+import AppliedJobs from '@/components/myJobs/AppliedJobs';
+import MyJobsTab from '@/components/myJobs/MyJobsTab';
+import SavedJobs from '@/components/myJobs/SavedJobs';
+import { useState } from 'react';
+import { StatusBar, View } from 'react-native';
 
 function MyJobsScreen() {
+  const [myJobs, setMyJobs] = useState('saved');
+
+  function toggleMyJobs() {
+    if (myJobs === 'saved') setMyJobs('applied');
+    else setMyJobs('saved');
+  }
+
   return (
-    <SafeAreaContainer>
-      <View>
-        <Text>My Jobs</Text>
+    <View>
+      <StatusBar barStyle={'dark-content'} />
+      <View className='flex-row py-4 bg-white px-3'>
+        <MyJobsTab myJobs={myJobs} toggleMyJobs={toggleMyJobs} tag='saved'>
+          Saved Jobs
+        </MyJobsTab>
+
+        <MyJobsTab myJobs={myJobs} toggleMyJobs={toggleMyJobs} tag='applied'>
+          Applied Jobs
+        </MyJobsTab>
       </View>
-    </SafeAreaContainer>
+
+      {myJobs === 'saved' ? <SavedJobs /> : <AppliedJobs />}
+    </View>
   );
 }
 

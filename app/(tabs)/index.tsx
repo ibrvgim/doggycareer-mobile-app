@@ -1,32 +1,28 @@
 import SafeAreaContainer from '@/components/general/SafeAreaContainer';
 import SearchingSystem from '@/components/general/SearchingSystem';
-import { Pressable, Text, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import JobCard from '@/components/jobs/JobCard';
+import { Text, View } from 'react-native';
+import useGetJobs from '@/hooks/jobs/useGetJobs';
+import { JobType } from '@/types/types';
+import LoadingScreen from '@/components/general/LoadingScreen';
+import JobsList from '@/components/jobs/JobsList';
 
 function JobsScreen() {
+  const { isPending, jobs } = useGetJobs();
+  let filteredJobs: JobType[] | undefined = jobs;
+  if (!filteredJobs) return;
+
+  let content = <JobsList filteredJobs={filteredJobs} />;
+  if (isPending) content = <LoadingScreen />;
+
   return (
     <SafeAreaContainer>
-      <View>
-        {/* SEARCHING INPUTS */}
+      <View className='flex-1'>
+        <Text className='bg-blue-50 uppercase text-center pt-7 font-bold text-cyan-700 tracking-widest text-2xl'>
+          Doggycareer
+        </Text>
         <SearchingSystem />
 
-        {/* FILTER */}
-        <View className='flex-row justify-between items-center bg-blue-50 py-4 px-3'>
-          <Text className='font-medium text-gray-600'>Jobs: 287</Text>
-          <Pressable className='flex-row items-center gap-2'>
-            <Ionicons name='filter-outline' size={18} color='rgb(8 145 178)' />
-            <Text className='font-medium text-cyan-600'>Filters</Text>
-          </Pressable>
-        </View>
-
-        {/* JOBS LIST */}
-        <View>
-          <JobCard />
-          <JobCard />
-          <JobCard />
-          <JobCard />
-        </View>
+        {content}
       </View>
     </SafeAreaContainer>
   );
