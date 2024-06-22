@@ -1,8 +1,10 @@
-import { Text, View } from 'react-native';
+import { StatusBar, Text, View } from 'react-native';
 
 function SettingsScreen() {
   return (
-    <View>
+    <View className='flex-1'>
+      <StatusBar barStyle={'dark-content'} />
+
       <Text>Settings</Text>
     </View>
   );

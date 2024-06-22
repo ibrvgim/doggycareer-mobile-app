@@ -2,7 +2,7 @@ import { StatusBar, Text, View } from 'react-native';
 
 function ProfileScreen() {
   return (
-    <View>
+    <View className='flex-1'>
       <StatusBar barStyle={'dark-content'} />
 
       <Text>Profile Screen</Text>

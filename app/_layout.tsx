@@ -7,16 +7,15 @@ export default function RootLayout() {
   return (
     <QueryClientProvider client={queryClient}>
       <Stack>
+        <Stack.Screen name='(auth)' options={{ headerShown: false }} />
         <Stack.Screen name='(tabs)' options={{ headerShown: false }} />
-
         <Stack.Screen
-          name='(stacks)'
+          name='[jobID]'
           options={{
             headerTitle: 'Job Details',
             headerBackTitleVisible: false,
           }}
         />
-
         <Stack.Screen
           name='settings'
           options={{

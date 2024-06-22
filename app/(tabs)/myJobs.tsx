@@ -13,9 +13,9 @@ function MyJobsScreen() {
   }
 
   return (
-    <View>
+    <View className='flex-1'>
       <StatusBar barStyle={'dark-content'} />
-      <View className='flex-row py-4 bg-white px-3'>
+      <View className='flex-row py-6 bg-white px-3'>
         <MyJobsTab myJobs={myJobs} toggleMyJobs={toggleMyJobs} tag='saved'>
           Saved Jobs
         </MyJobsTab>

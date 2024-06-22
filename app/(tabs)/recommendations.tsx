@@ -3,7 +3,7 @@ import { ScrollView, StatusBar, View } from 'react-native';
 
 function RecommendationsScreen() {
   return (
-    <View>
+    <View className='flex-1'>
       <StatusBar barStyle={'dark-content'} />
 
       <ScrollView>

@@ -3,7 +3,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 
 function SuggestedJobCard({
-  id,
+  jobID,
   image,
   title,
   companyName,
@@ -11,7 +11,7 @@ function SuggestedJobCard({
   jobType,
   postedAt,
 }: {
-  id: number;
+  jobID: number;
   image: string;
   title: string;
   companyName: string;
@@ -21,12 +21,10 @@ function SuggestedJobCard({
 }) {
   const route = useRouter();
 
-  console.log(postedAt);
-
   return (
     <Pressable
       className='bg-white px-5 py-4 border-[1px] border-gray-300 rounded-xl mb-3'
-      onPress={() => route.push(`(stacks)/jobs/${id}`)}
+      onPress={() => route.push(`${jobID}`)}
     >
       <View className='flex-row items-center pr-14'>
         <View className='border-[1px] border-gray-300 rounded-md mr-4'>

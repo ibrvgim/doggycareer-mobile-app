@@ -6,7 +6,7 @@ import { JobType } from '@/types/types';
 
 function JobsList({ filteredJobs }: { filteredJobs: JobType[] }) {
   return (
-    <>
+    <View className='flex-1'>
       <View className='flex-row justify-between items-center bg-blue-50 py-4 px-3'>
         <Text className='font-medium text-gray-600'>
           Jobs: {filteredJobs?.length}
@@ -22,7 +22,7 @@ function JobsList({ filteredJobs }: { filteredJobs: JobType[] }) {
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
           <JobCard
-            id={item?.id}
+            jobID={item?.id}
             image={item?.logo}
             title={item?.jobTitle}
             companyName={item?.companyName}
@@ -32,7 +32,7 @@ function JobsList({ filteredJobs }: { filteredJobs: JobType[] }) {
           />
         )}
       />
-    </>
+    </View>
   );
 }
 

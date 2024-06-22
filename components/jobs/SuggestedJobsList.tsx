@@ -15,7 +15,7 @@ function SuggestedJobsList({ jobId }: { jobId: string }) {
           .map((job) => (
             <SuggestedJobCard
               key={job.id}
-              id={job?.id}
+              jobID={job?.id}
               image={job?.logo}
               title={job?.jobTitle}
               companyName={job?.companyName}

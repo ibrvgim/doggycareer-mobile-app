@@ -15,7 +15,7 @@ export default function TabsLayout() {
       }}
     >
       <Tabs.Screen
-        name='index'
+        name='jobs'
         options={{
           title: 'Search Jobs',
           tabBarIcon: ({ size, focused }) => (
