@@ -6,24 +6,17 @@ import { jobPosted } from '@/utilities/jobPosted';
 import StoredJobsEmpty from './StoredJobsEmpty';
 import { Ionicons } from '@expo/vector-icons';
 
-function AppliedJobs({ appliedJobs }: { appliedJobs: string[] }) {
+function ArchiveJobs({ archiveJobs }: { archiveJobs: string[] }) {
   const { isPending, jobs } = useGetJobs();
 
-  const allAppliedJobs = jobs?.filter((job) =>
-    appliedJobs?.includes(job.id.toString())
+  const allArchiveJobs = jobs?.filter((job) =>
+    archiveJobs?.includes(job.id.toString())
   );
 
-  if (allAppliedJobs?.length === 0) {
+  if (allArchiveJobs?.length === 0) {
     return (
-      <StoredJobsEmpty
-        title='No Applied Jobs'
-        description='Start your job search now and be one of the first to apply for new opportunities.'
-      >
-        <Ionicons
-          name='heart-dislike-outline'
-          size={80}
-          color='rgb(107 114 128)'
-        />
+      <StoredJobsEmpty title='No Jobs in the Archive'>
+        <Ionicons name='archive-outline' size={80} color='rgb(107 114 128)' />
       </StoredJobsEmpty>
     );
   }
@@ -32,7 +25,7 @@ function AppliedJobs({ appliedJobs }: { appliedJobs: string[] }) {
   return (
     <View className='flex-1 px-3 pt-3'>
       <FlatList
-        data={allAppliedJobs}
+        data={allArchiveJobs}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
           <SuggestedJobCard
@@ -49,4 +42,5 @@ function AppliedJobs({ appliedJobs }: { appliedJobs: string[] }) {
     </View>
   );
 }
-export default AppliedJobs;
+
+export default ArchiveJobs;

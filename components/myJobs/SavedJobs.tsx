@@ -3,14 +3,17 @@ import SuggestedJobCard from '../jobs/SuggestedJobCard';
 import useGetJobs from '@/hooks/jobs/useGetJobs';
 import { jobPosted } from '@/utilities/jobPosted';
 import LoadingScreen from '../general/LoadingScreen';
-import StoredJobsEmpty from '../jobs/StoredJobsEmpty';
+import StoredJobsEmpty from './StoredJobsEmpty';
 import { Ionicons } from '@expo/vector-icons';
 
-function SavedJobs() {
+function SavedJobs({ savedJobs }: { savedJobs: string[] }) {
   const { isPending, jobs } = useGetJobs();
 
-  if (isPending) return <LoadingScreen />;
-  if (jobs?.length === 0) {
+  const allStoredJobs = jobs?.filter((job) =>
+    savedJobs?.includes(job.id.toString())
+  );
+
+  if (allStoredJobs?.length === 0) {
     return (
       <StoredJobsEmpty
         title='No Saved Jobs'
@@ -25,10 +28,11 @@ function SavedJobs() {
     );
   }
 
+  if (isPending) return <LoadingScreen />;
   return (
     <View className='flex-1 px-3 pt-3'>
       <FlatList
-        data={jobs}
+        data={allStoredJobs}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
           <SuggestedJobCard

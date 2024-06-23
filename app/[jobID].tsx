@@ -4,17 +4,26 @@ import JobActionButtons from '@/components/jobs/JobActionButtons';
 import JobContent from '@/components/jobs/JobContent';
 import JobInfoBadges from '@/components/jobs/JobInfoBadges';
 import SuggestedJobsList from '@/components/jobs/SuggestedJobsList';
+import { useGetUser } from '@/hooks/auth/useGetUser';
 import useGetSingleJobs from '@/hooks/jobs/useGetSingleJob';
+import useGetStoredJobs from '@/hooks/jobs/useGetStoredJobs';
 import { jobPosted } from '@/utilities/jobPosted';
 import { useLocalSearchParams } from 'expo-router';
 import { Pressable, ScrollView, Text, View } from 'react-native';
 
 function JobDetailsScreen() {
   const { jobID }: { jobID?: string } = useLocalSearchParams();
-  const { isPending, job } = useGetSingleJobs(jobID as string);
-  if (!jobID) return;
+  const { isPending: iSGettingJob, job } = useGetSingleJobs(jobID as string);
+  const { isPending: isGettingStoredJobs, storedJobs } = useGetStoredJobs();
+  const { isPending: isGettingUser, getUser } = useGetUser();
 
-  if (isPending) return <LoadingScreen />;
+  const currentUserStoredJobs = storedJobs?.find(
+    (item) => item?.userId === getUser?.id
+  );
+
+  if (!jobID) return;
+  if (iSGettingJob || isGettingUser || isGettingStoredJobs)
+    return <LoadingScreen />;
   return (
     <ScrollView className='flex-1 border-t-[1px] bg-white border-t-gray-300'>
       <View className='px-5 pt-8'>
@@ -28,7 +37,11 @@ function JobDetailsScreen() {
           jobType={job?.jobType}
           postedAt={jobPosted(job?.postedAt)}
         />
-        <JobActionButtons />
+        <JobActionButtons
+          savedJobs={currentUserStoredJobs?.savedJobs}
+          jobId={jobID}
+          userId={getUser?.id}
+        />
         <JobContent job={job} />
 
         <View className='mt-6 pb-6 border-b-[1px] border-b-gray-300 flex-row items-center'>

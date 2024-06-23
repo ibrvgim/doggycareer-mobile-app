@@ -1,4 +1,5 @@
-import { Text, View } from 'react-native';
+import { useRouter } from 'expo-router';
+import { Pressable, Text, View } from 'react-native';
 
 function StoredJobsEmpty({
   children,
@@ -7,8 +8,10 @@ function StoredJobsEmpty({
 }: {
   children: JSX.Element;
   title: string;
-  description: string;
+  description?: string;
 }) {
+  const route = useRouter();
+
   return (
     <View className='flex-1 justify-center items-center px-8'>
       {children}
@@ -18,6 +21,15 @@ function StoredJobsEmpty({
       <Text className='text-center text-sm font-medium text-gray-500 mt-3 tracking-wide'>
         {description}
       </Text>
+
+      {description && (
+        <Pressable
+          className='border-[1px] border-cyan-700 py-1 px-6 rounded-full mt-6'
+          onPress={() => route.push('jobs')}
+        >
+          <Text className='text-cyan-700 font-medium'>Search Jobs</Text>
+        </Pressable>
+      )}
     </View>
   );
 }

@@ -11,11 +11,17 @@ export async function createSavedAppliedJobs(id: string) {
 }
 
 // SAVED JOBS API
-export async function updateSavedJobs(id: string, saved: string[]) {
+export async function updateSavedJobs({
+  userId,
+  saved,
+}: {
+  userId: string;
+  saved: string[];
+}) {
   const { data, error } = await supabase
     .from('saved-applied-jobs')
     .update({ savedJobs: saved })
-    .eq('userId', id)
+    .eq('userId', userId)
     .select();
 
   if (error) throw new Error(error.message);

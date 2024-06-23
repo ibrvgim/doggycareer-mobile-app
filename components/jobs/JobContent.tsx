@@ -2,9 +2,9 @@ import { JobType } from '@/types/types';
 import { Text, View } from 'react-native';
 
 function JobContent({ job }: { job: JobType }) {
-  const descriptions = job.jobDescription.trim().split('\\n');
-  const responsibilities = job.responsibilities.trim().split('\\n');
-  const qualifications = job.qualifications.trim().split('\\n');
+  const descriptions = job?.jobDescription.trim().split('\\n');
+  const responsibilities = job?.responsibilities.trim().split('\\n');
+  const qualifications = job?.qualifications.trim().split('\\n');
 
   return (
     <View className='mt-8 border-b-[1px] border-b-gray-300'>

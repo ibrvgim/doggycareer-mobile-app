@@ -17,3 +17,26 @@ export interface JobType {
   postAuthor?: string;
   active?: boolean;
 }
+
+// USER LOGIN TYPE
+export interface LoginType {
+  email: string;
+  password: string;
+}
+
+// USER SIGNUP TYPE
+export interface SignupType {
+  email: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
+}
+
+// FILTERS TYPE
+export interface FiltersType {
+  sortBy: string;
+  publicationDate: string;
+  jobType: string;
+  officeType: string;
+}
