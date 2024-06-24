@@ -1,6 +1,7 @@
 import LoadingScreen from '@/components/general/LoadingScreen';
 import CompanyDetailCard from '@/components/jobs/CompanyDetailCard';
 import JobActionButtons from '@/components/jobs/JobActionButtons';
+import JobArchiveAction from '@/components/jobs/JobArchiveAction';
 import JobContent from '@/components/jobs/JobContent';
 import JobInfoBadges from '@/components/jobs/JobInfoBadges';
 import SuggestedJobsList from '@/components/jobs/SuggestedJobsList';
@@ -10,6 +11,7 @@ import useGetStoredJobs from '@/hooks/jobs/useGetStoredJobs';
 import { jobPosted } from '@/utilities/jobPosted';
 import { useLocalSearchParams } from 'expo-router';
 import { Pressable, ScrollView, Text, View } from 'react-native';
+import { FontAwesome6 } from '@expo/vector-icons';
 
 function JobDetailsScreen() {
   const { jobID }: { jobID?: string } = useLocalSearchParams();
@@ -20,6 +22,8 @@ function JobDetailsScreen() {
   const currentUserStoredJobs = storedJobs?.find(
     (item) => item?.userId === getUser?.id
   );
+  const isApplied = currentUserStoredJobs?.appliedJobs.includes(jobID);
+  const isArchived = currentUserStoredJobs?.archive.includes(jobID);
 
   if (!jobID) return;
   if (iSGettingJob || isGettingUser || isGettingStoredJobs)
@@ -36,24 +40,44 @@ function JobDetailsScreen() {
           location={job?.location}
           jobType={job?.jobType}
           postedAt={jobPosted(job?.postedAt)}
+          officeType={job?.officeType}
         />
-        <JobActionButtons
-          savedJobs={currentUserStoredJobs?.savedJobs}
-          jobId={jobID}
-          userId={getUser?.id}
-        />
+
+        {isApplied ? (
+          <JobArchiveAction jobID={jobID} />
+        ) : isArchived ? (
+          <View className='flex-row items-center mt-8'>
+            <FontAwesome6
+              name='box-archive'
+              size={20}
+              color='rgb(156 163 175)'
+            />
+            <Text className='text-base text-gray-400 font-semibold tracking-wider ml-1'>
+              Job is Archived.
+            </Text>
+          </View>
+        ) : (
+          <JobActionButtons
+            savedJobs={currentUserStoredJobs?.savedJobs}
+            jobId={jobID}
+            userId={getUser?.id}
+          />
+        )}
+
         <JobContent job={job} />
 
-        <View className='mt-6 pb-6 border-b-[1px] border-b-gray-300 flex-row items-center'>
-          <Text className='text-[15px] text-gray-500 font-semibold tracking-wider text-justify mr-3'>
-            Are you interested?
-          </Text>
-          <Pressable className='flex-1 bg-cyan-700 text-center py-1 rounded-full items-center justify-center mr-2'>
-            <Text className='text-gray-100 text-[15px] font-medium tracking-wider'>
-              Apply Now
+        {!isApplied && !isArchived && (
+          <View className='mt-8 pb-6 border-b-[1px] border-b-gray-300 flex-row items-center'>
+            <Text className='text-[15px] text-gray-500 font-semibold tracking-wider text-justify mr-3'>
+              Are you interested?
             </Text>
-          </Pressable>
-        </View>
+            <Pressable className='flex-1 bg-cyan-700 text-center py-1 rounded-full items-center justify-center mr-2'>
+              <Text className='text-gray-100 text-[15px] font-medium tracking-wider'>
+                Apply Now
+              </Text>
+            </Pressable>
+          </View>
+        )}
 
         <CompanyDetailCard job={job} />
       </View>

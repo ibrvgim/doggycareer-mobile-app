@@ -41,7 +41,7 @@ function JobContent({ job }: { job: JobType }) {
       <Text className='text-cyan-700 text-lg font-semibold mb-2'>
         Qualifications:
       </Text>
-      <View className='mb-8'>
+      <View className='mb-4'>
         {qualifications?.map((item) => (
           <Text
             key={item}

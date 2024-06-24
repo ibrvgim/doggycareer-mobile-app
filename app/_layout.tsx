@@ -2,6 +2,7 @@ import { Stack } from 'expo-router';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Provider } from 'react-redux';
 import store from './store';
+import Toast from 'react-native-toast-message';
 
 const queryClient = new QueryClient();
 
@@ -37,6 +38,7 @@ export default function RootLayout() {
             }}
           />
         </Stack>
+        <Toast />
       </Provider>
     </QueryClientProvider>
   );

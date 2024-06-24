@@ -1,5 +1,5 @@
 import { Image, Pressable, Text, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 
 function JobCard({
@@ -9,6 +9,7 @@ function JobCard({
   companyName,
   location,
   jobType,
+  officeType,
   postedAt,
 }: {
   jobID: number;
@@ -17,6 +18,7 @@ function JobCard({
   companyName: string;
   location: string;
   jobType: string;
+  officeType: string;
   postedAt: string;
 }) {
   const route = useRouter();
@@ -56,6 +58,13 @@ function JobCard({
           <View className='flex-row items-center mr-5'>
             <Ionicons name='time-outline' size={16} color='rgb(251 113 133)' />
             <Text className='text-gray-500 ml-1 text-[13px]'>{jobType}</Text>
+          </View>
+
+          <View className='flex-row items-center mr-5'>
+            <FontAwesome name='building-o' size={14} color='rgb(251 113 133)' />
+            <Text className='text-gray-500 ml-[6px] text-[13px]'>
+              {officeType}
+            </Text>
           </View>
 
           <View className='flex-row items-center mt-4'>

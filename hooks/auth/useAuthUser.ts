@@ -1,6 +1,7 @@
 import { createUserAPI, loginUserAPI } from '@/data/auth/apiAuth';
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'expo-router';
+import { Alert } from 'react-native';
 
 // LOGIN USER
 export function useLoginUser() {
@@ -9,7 +10,10 @@ export function useLoginUser() {
   const { isPending, mutate: loginUser } = useMutation({
     mutationFn: loginUserAPI,
 
-    onSuccess: () => route.replace('jobs'),
+    onSuccess: (data: any) => {
+      if (data?.user?.role === 'authenticated') route.replace('jobs');
+      else Alert.alert('Something Wrong', data as string);
+    },
     onError: (error) => console.log(error.message),
   });
 

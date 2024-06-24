@@ -40,3 +40,11 @@ export interface FiltersType {
   jobType: string;
   officeType: string;
 }
+
+// QUESTIONNAIRE TYPE
+export interface QuestionnaireType {
+  jobType: string;
+  location: string[];
+  industry: string[];
+  email: string;
+}

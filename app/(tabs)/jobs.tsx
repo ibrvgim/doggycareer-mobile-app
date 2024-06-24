@@ -1,23 +1,27 @@
 import SearchingSystem from '@/components/general/SearchingSystem';
-import { StatusBar, Text, View } from 'react-native';
+import { Image, StatusBar, Text, View } from 'react-native';
 import useGetJobs from '@/hooks/jobs/useGetJobs';
-import { JobType } from '@/types/types';
 import LoadingScreen from '@/components/general/LoadingScreen';
 import JobsList from '@/components/jobs/JobsList';
 
 function JobsScreen() {
   const { isPending, jobs } = useGetJobs();
-  let filteredJobs: JobType[] | undefined = jobs;
-  if (!filteredJobs) return;
-  let content = <JobsList filteredJobs={filteredJobs} />;
+
+  let content = <JobsList jobs={jobs} />;
   if (isPending) content = <LoadingScreen />;
 
   return (
     <View className='flex-1'>
       <StatusBar barStyle={'dark-content'} />
-      <Text className='bg-blue-50 uppercase text-center pt-7 font-bold text-cyan-700 tracking-widest text-2xl'>
-        Doggycareer
-      </Text>
+      <View className='flex-row justify-center items-center gap-3 bg-blue-50 pt-8'>
+        <Image
+          source={require('../../assets/images/logo.png')}
+          className='w-12 h-12'
+        />
+        <Text className='uppercase text-center font-bold text-cyan-700 tracking-widest text-2xl'>
+          Doggycareer
+        </Text>
+      </View>
       <SearchingSystem />
 
       {content}

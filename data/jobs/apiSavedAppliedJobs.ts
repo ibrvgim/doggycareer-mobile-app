@@ -29,11 +29,17 @@ export async function updateSavedJobs({
 }
 
 // APPLIED JOBS API
-export async function updateAppliedJobs(id: string, applied: string[]) {
+export async function updateAppliedJobs({
+  userId,
+  applied,
+}: {
+  userId: string;
+  applied: string[];
+}) {
   const { data, error } = await supabase
     .from('saved-applied-jobs')
     .update({ appliedJobs: applied })
-    .eq('userId', id)
+    .eq('userId', userId)
     .select();
 
   if (error) throw new Error(error.message);
@@ -41,11 +47,17 @@ export async function updateAppliedJobs(id: string, applied: string[]) {
 }
 
 // ARCHIVE JOBS API
-export async function updateArchiveJobs(id: string, archived: string[]) {
+export async function updateArchiveJobs({
+  userId,
+  archived,
+}: {
+  userId: string;
+  archived: string[];
+}) {
   const { data, error } = await supabase
     .from('saved-applied-jobs')
     .update({ archive: archived })
-    .eq('userId', id)
+    .eq('userId', userId)
     .select();
 
   if (error) throw new Error(error.message);

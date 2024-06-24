@@ -61,7 +61,7 @@ function FiltersModal() {
 
       <FilterCard
         icon={
-          <FontAwesome5 name='calendar-alt' size={19} color='rgb(14 116 144)' />
+          <FontAwesome5 name='calendar-alt' size={18} color='rgb(14 116 144)' />
         }
         title='Publication Date'
       >
