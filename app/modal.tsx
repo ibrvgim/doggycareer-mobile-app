@@ -34,7 +34,7 @@ function FiltersModal() {
   }, []);
 
   return (
-    <ScrollView className='py-8 px-4'>
+    <ScrollView className='py-8 px-4 bg-white border-t-[1px] border-t-gray-300'>
       <FilterCard
         icon={
           <FontAwesome

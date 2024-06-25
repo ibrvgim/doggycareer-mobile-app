@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState: QuestionnaireType = {
   jobType: '',
+  officeType: '',
   location: [],
   industry: [],
   email: '',
@@ -13,7 +14,13 @@ export const questionnaireSlice = createSlice({
   initialState,
   reducers: {
     setJobType: (state, action) => {
-      state.jobType = action.payload;
+      if (state.jobType === action.payload) state.jobType = '';
+      else state.jobType = action.payload;
+    },
+
+    setOfficeType: (state, action) => {
+      if (state.officeType === action.payload) state.officeType = '';
+      else state.officeType = action.payload;
     },
 
     setLocation: (state, action) => {
@@ -38,6 +45,6 @@ export const questionnaireSlice = createSlice({
   },
 });
 
-export const { setJobType, setLocation, setIndustry, setEmail } =
+export const { setJobType, setOfficeType, setLocation, setIndustry, setEmail } =
   questionnaireSlice.actions;
 export default questionnaireSlice.reducer;

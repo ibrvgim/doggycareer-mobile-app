@@ -4,6 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 
+// don't forget to add new rows to tables that demands at initial creation
 function SignupInputsContainer() {
   return (
     <View className='mt-12 mx-4 px-4 pt-10 pb-7 bg-white rounded-xl shadow-lg border-2 border-cyan-700'>

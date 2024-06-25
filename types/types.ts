@@ -44,6 +44,7 @@ export interface FiltersType {
 // QUESTIONNAIRE TYPE
 export interface QuestionnaireType {
   jobType: string;
+  officeType: string;
   location: string[];
   industry: string[];
   email: string;

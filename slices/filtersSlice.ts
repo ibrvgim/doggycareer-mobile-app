@@ -16,6 +16,7 @@ export const filtersSlice = createSlice({
       if (state.sortBy === action.payload) state.sortBy = '';
       else state.sortBy = action.payload;
     },
+
     setPublicationDate: (state, action) => {
       if (state.publicationDate === action.payload) state.publicationDate = '';
       else state.publicationDate = action.payload;
