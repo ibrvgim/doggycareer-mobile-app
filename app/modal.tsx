@@ -7,6 +7,7 @@ import FilterTab from '@/components/modal/FilterTab';
 import { useDispatch, useSelector } from 'react-redux';
 import { FiltersType } from '@/types/types';
 import {
+  setClearAll,
   setJobType,
   setOfficeType,
   setPublicationDate,
@@ -78,8 +79,8 @@ function FiltersModal() {
           />
           <FilterTab
             title='Within 14 days'
-            handleOnPress={() => dispatch(setPublicationDate('24days'))}
-            isActive={filters?.publicationDate === '24days'}
+            handleOnPress={() => dispatch(setPublicationDate('14days'))}
+            isActive={filters?.publicationDate === '14days'}
           />
         </>
       </FilterCard>
@@ -132,6 +133,20 @@ function FiltersModal() {
           />
         </>
       </FilterCard>
+
+      {(filters.jobType ||
+        filters.sortBy ||
+        filters.officeType ||
+        filters.publicationDate) && (
+        <Pressable
+          className='self-end border-[1px] border-cyan-700 px-6 py-2 rounded-md'
+          onPress={() => dispatch(setClearAll())}
+        >
+          <Text className='text-cyan-700 font-semibold tracking-wide'>
+            Clear All
+          </Text>
+        </Pressable>
+      )}
     </ScrollView>
   );
 }

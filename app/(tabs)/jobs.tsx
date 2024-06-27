@@ -3,13 +3,17 @@ import { Image, StatusBar, Text, View } from 'react-native';
 import useGetJobs from '@/hooks/jobs/useGetJobs';
 import LoadingScreen from '@/components/general/LoadingScreen';
 import JobsList from '@/components/jobs/JobsList';
+import { useSelector } from 'react-redux';
 
 function JobsScreen() {
   const { isPending, jobs } = useGetJobs();
+  const searches = useSelector(
+    (state: { searchSystem: { title: string; region: string } }) =>
+      state.searchSystem
+  );
 
   let content = <JobsList jobs={jobs} />;
   if (isPending) content = <LoadingScreen />;
-
   return (
     <View className='flex-1'>
       <StatusBar barStyle={'dark-content'} />
@@ -22,7 +26,7 @@ function JobsScreen() {
           Doggycareer
         </Text>
       </View>
-      <SearchingSystem />
+      <SearchingSystem searches={searches} />
 
       {content}
     </View>

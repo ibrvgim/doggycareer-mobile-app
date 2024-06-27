@@ -27,7 +27,7 @@ function WhereWorkCard({
             className='bg-cyan-50 border-[1px] border-cyan-700 rounded-full px-6 py-1'
             onPress={() => handleDelete(city)}
           >
-            <Text className='font-medium text-cyan-700 tracking-wide'>
+            <Text className='font-medium text-cyan-700 tracking-wide capitalize'>
               {city}
             </Text>
           </Pressable>

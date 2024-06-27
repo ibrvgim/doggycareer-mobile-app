@@ -10,7 +10,7 @@ function FilterCard({
   children: React.ReactNode;
 }) {
   return (
-    <View className='border-b-[1px] border-b-gray-300 pb-6 mb-8'>
+    <View className='border-b-[1px] border-b-gray-300 pb-6 mb-6'>
       <View className='flex-row items-center'>
         {icon}
         <Text className='text-base font-semibold text-cyan-700 ml-2 tracking-wider'>

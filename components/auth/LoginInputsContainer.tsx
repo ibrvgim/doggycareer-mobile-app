@@ -14,8 +14,8 @@ function LoginInputsContainer() {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      email: '',
-      password: '',
+      email: 'doggycareer@gmail.com',
+      password: 'doggycareer',
     },
   });
 

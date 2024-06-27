@@ -56,7 +56,9 @@ function InputOptions({
   const getSomeCities: string[] = cities
     ?.map((city: string) => city)
     .filter(
-      (city: string) => !locations.includes(city) && city.includes(input.trim())
+      (city: string) =>
+        !locations.includes(city.toLowerCase()) &&
+        city.toLowerCase().includes(input.toLowerCase().trim())
     )
     .slice(0, 3);
 

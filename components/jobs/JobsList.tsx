@@ -15,6 +15,10 @@ function JobsList({ jobs }: { jobs: JobType[] | undefined }) {
   const filters = useSelector(
     (state: { filters: FiltersType }) => state.filters
   );
+  const searches = useSelector(
+    (state: { searchSystem: { title: string; region: string } }) =>
+      state.searchSystem
+  );
   const { getUser } = useGetUser();
   const { storedJobs } = useGetStoredJobs();
   const { sortBy, publicationDate, jobType, officeType } = filters;
@@ -29,6 +33,45 @@ function JobsList({ jobs }: { jobs: JobType[] | undefined }) {
       job.postAuthor !== getUser?.id
   );
 
+  if (searches?.region || searches?.title) {
+    filteredJobs = filteredJobs?.filter((job) => {
+      if (searches?.region && searches?.title) {
+        return (
+          job.location.toLowerCase().trim().split('-').join(' ') ===
+            searches?.region?.toLowerCase().trim().split('-').join(' ') &&
+          (job.industry.toLowerCase().trim().split('-').join(' ') ===
+            searches?.title?.toLowerCase().trim().split('-').join(' ') ||
+            job.jobTitle
+              .toLowerCase()
+              .trim()
+              .split('-')
+              .join(' ')
+              .includes(
+                searches?.title?.toLowerCase().trim().split('-').join(' ')
+              ))
+        );
+      } else if (searches?.region) {
+        return (
+          job.location.toLowerCase().trim().split('-').join(' ') ===
+          searches?.region?.toLowerCase().trim().split('-').join(' ')
+        );
+      } else if (searches?.title) {
+        return (
+          job.industry.toLowerCase().trim().split('-').join(' ') ===
+            searches?.title?.toLowerCase().trim().split('-').join(' ') ||
+          job.jobTitle
+            .toLowerCase()
+            .trim()
+            .split('-')
+            .join(' ')
+            .includes(
+              searches?.title?.toLowerCase().trim().split('-').join(' ')
+            )
+        );
+      } else return job;
+    });
+  }
+
   if (sortBy) {
     filteredJobs = filteredJobs?.sort((a, b) => {
       if (sortBy === 'recent') {
@@ -42,10 +85,9 @@ function JobsList({ jobs }: { jobs: JobType[] | undefined }) {
       if (publicationDate === '24hours')
         return differenceInHours(new Date(), new Date(job.postedAt)) <= 24;
       else if (publicationDate === '7days')
-        return differenceInDays(new Date(), new Date(job.postedAt)) <= 7;
+        return differenceInDays(new Date(), new Date(job.postedAt)) <= 8;
       else if (publicationDate === '14days')
-        return differenceInDays(new Date(), new Date(job.postedAt)) <= 14;
-      else return job;
+        return differenceInDays(new Date(), new Date(job.postedAt)) <= 15;
     });
   }
 

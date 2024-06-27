@@ -55,7 +55,8 @@ function InputOptions({
     ?.map((industry: string) => industry)
     .filter(
       (industry: string) =>
-        !industries.includes(industry) && industry.includes(input.trim())
+        !industries.includes(industry.toLowerCase()) &&
+        industry.toLowerCase().includes(input.toLowerCase())
     )
     .slice(0, 3);
 

@@ -9,11 +9,12 @@ import { useGetUser } from '@/hooks/auth/useGetUser';
 import useGetSingleJobs from '@/hooks/jobs/useGetSingleJob';
 import useGetStoredJobs from '@/hooks/jobs/useGetStoredJobs';
 import { jobPosted } from '@/utilities/jobPosted';
-import { useLocalSearchParams } from 'expo-router';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Pressable, ScrollView, Text, View } from 'react-native';
 import { FontAwesome6 } from '@expo/vector-icons';
 
 function JobDetailsScreen() {
+  const route = useRouter();
   const { jobID }: { jobID?: string } = useLocalSearchParams();
   const { isPending: iSGettingJob, job } = useGetSingleJobs(jobID as string);
   const { isPending: isGettingStoredJobs, storedJobs } = useGetStoredJobs();
@@ -71,7 +72,10 @@ function JobDetailsScreen() {
             <Text className='text-[15px] text-gray-500 font-semibold tracking-wider text-justify mr-3'>
               Are you interested?
             </Text>
-            <Pressable className='flex-1 bg-cyan-700 text-center py-1 rounded-full items-center justify-center mr-2'>
+            <Pressable
+              className='flex-1 bg-cyan-700 text-center py-1 rounded-full items-center justify-center mr-2'
+              onPress={() => route.push(`(apply)/${jobID}`)}
+            >
               <Text className='text-gray-100 text-[15px] font-medium tracking-wider'>
                 Apply Now
               </Text>

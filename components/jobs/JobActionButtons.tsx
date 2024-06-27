@@ -1,4 +1,5 @@
 import { useUpdateSavedJob } from '@/hooks/jobs/useUpdateStoredJobs';
+import { useRouter } from 'expo-router';
 import { Pressable, Text, View } from 'react-native';
 
 function JobActionButtons({
@@ -10,6 +11,7 @@ function JobActionButtons({
   jobId: string;
   userId: string | undefined;
 }) {
+  const route = useRouter();
   const isSaved = savedJobs?.includes(jobId);
   const { updateSaveJob } = useUpdateSavedJob();
 
@@ -23,7 +25,10 @@ function JobActionButtons({
 
   return (
     <View className='mt-8 flex-row'>
-      <Pressable className='flex-1 bg-cyan-700 text-center py-2 rounded-full items-center justify-center mr-2'>
+      <Pressable
+        className='flex-1 bg-cyan-700 text-center py-2 rounded-full items-center justify-center mr-2'
+        onPress={() => route.push(`(apply)/${jobId}`)}
+      >
         <Text className='text-gray-100 text-[15px] font-medium tracking-wider'>
           Apply Now
         </Text>

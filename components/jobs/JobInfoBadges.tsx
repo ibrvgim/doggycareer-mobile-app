@@ -11,7 +11,7 @@ function JobInfoBadges({
   companyName: string;
   location: string;
   jobType: string;
-  postedAt: string;
+  postedAt?: string;
   officeType: string;
 }) {
   return (
@@ -36,12 +36,18 @@ function JobInfoBadges({
         <Text className='text-gray-500 text-[15px] ml-[6px]'>{officeType}</Text>
       </View>
 
-      <View className='flex-row items-center'>
-        <Ionicons name='calendar-outline' size={18} color='rgb(251 113 133)' />
-        <Text className='text-gray-500 text-[15px] ml-1'>
-          Published {postedAt}
-        </Text>
-      </View>
+      {postedAt && (
+        <View className='flex-row items-center'>
+          <Ionicons
+            name='calendar-outline'
+            size={18}
+            color='rgb(251 113 133)'
+          />
+          <Text className='text-gray-500 text-[15px] ml-1'>
+            Published {postedAt}
+          </Text>
+        </View>
+      )}
     </View>
   );
 }

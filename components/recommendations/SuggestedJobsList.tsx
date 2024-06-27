@@ -22,7 +22,7 @@ function SuggestedJobsList({
   );
 
   return (
-    <View className='flex-1 py-5 px-4'>
+    <View className='flex-1 bg-gray-100'>
       <FlatList
         data={filteredJobs}
         keyExtractor={(item) => item.id.toString()}

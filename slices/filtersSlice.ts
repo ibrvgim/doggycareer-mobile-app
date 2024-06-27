@@ -31,9 +31,16 @@ export const filtersSlice = createSlice({
       if (state.officeType === action.payload) state.officeType = '';
       else state.officeType = action.payload;
     },
+
+    setClearAll: () => initialState,
   },
 });
 
-export const { setSortBy, setPublicationDate, setJobType, setOfficeType } =
-  filtersSlice.actions;
+export const {
+  setSortBy,
+  setPublicationDate,
+  setJobType,
+  setOfficeType,
+  setClearAll,
+} = filtersSlice.actions;
 export default filtersSlice.reducer;

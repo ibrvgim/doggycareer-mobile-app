@@ -1,12 +1,6 @@
 import { QuestionnaireType } from '@/types/types';
 import { supabase } from '../supabase';
 
-interface PersonalDataType {
-  linkedin?: string;
-  github?: string;
-  questionnaire?: QuestionnaireType | null;
-}
-
 export async function getPersonalData() {
   const { data, error } = await supabase.from('users').select('*');
 
@@ -24,10 +18,13 @@ export async function createPersonalData(id: string) {
   return data;
 }
 
-export async function updatePersonalData(
-  id: string,
-  updatedData: PersonalDataType | string
-) {
+export async function updatePersonalData({
+  id,
+  updatedData,
+}: {
+  id: string;
+  updatedData: { questionnaire: QuestionnaireType };
+}) {
   const { data, error } = await supabase
     .from('users')
     .update(updatedData)
