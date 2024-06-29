@@ -14,10 +14,7 @@ function JobContent({ job }: { job: JobType }) {
 
       <View className='mb-8'>
         {descriptions?.map((item) => (
-          <Text
-            key={item}
-            className='text-base text-gray-600 text-justify mb-2'
-          >
+          <Text key={item} className='text-base text-gray-600 mb-2'>
             {item.trim()}
           </Text>
         ))}
@@ -29,10 +26,7 @@ function JobContent({ job }: { job: JobType }) {
 
       <View className='mb-8'>
         {responsibilities?.map((item) => (
-          <Text
-            key={item}
-            className='text-base text-gray-600 text-justify mb-2'
-          >
+          <Text key={item} className='text-base text-gray-600 mb-2'>
             {item.trim()}
           </Text>
         ))}
@@ -43,10 +37,7 @@ function JobContent({ job }: { job: JobType }) {
       </Text>
       <View className='mb-4'>
         {qualifications?.map((item) => (
-          <Text
-            key={item}
-            className='text-base text-gray-600 text-justify mb-2'
-          >
+          <Text key={item} className='text-base text-gray-600 mb-2'>
             {item.trim()}
           </Text>
         ))}

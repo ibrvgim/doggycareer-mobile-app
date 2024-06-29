@@ -1,4 +1,4 @@
-import { Pressable, ScrollView, Text } from 'react-native';
+import { ActivityIndicator, Pressable, ScrollView, Text } from 'react-native';
 import WhereWorkCard from './WhereWorkCard';
 import WhichJobCard from './WhichJobCard';
 import JobTypeCard from './JobTypeCard';
@@ -13,10 +13,16 @@ function Questionnaire() {
   const questionnaire = useSelector(
     (state: { questionnaire: QuestionnaireType }) => state.questionnaire
   );
-  const { updateData } = useUpdatePersonalData();
+  const { isPending, updateData } = useUpdatePersonalData();
+
+  const isValid =
+    questionnaire.industry.length > 0 ||
+    questionnaire.jobType ||
+    questionnaire.location.length > 0 ||
+    questionnaire.officeType;
 
   function handleSubmit() {
-    if (getUser?.id)
+    if (getUser?.id && isValid)
       updateData({
         id: getUser?.id,
         updatedData: { questionnaire: questionnaire },
@@ -39,10 +45,17 @@ function Questionnaire() {
       <OfficeTypeCard questionnaire={questionnaire} />
 
       <Pressable
-        className='bg-cyan-600 py-3 px-12 self-end mb-16 rounded-full'
+        className={`bg-cyan-700 py-3 px-12 self-end mb-16 rounded-md ${
+          !isValid ? 'opacity-50' : ''
+        }`}
         onPress={handleSubmit}
+        disabled={!isValid}
       >
-        <Text className='text-white font-medium tracking-wider'>Submit</Text>
+        {isPending ? (
+          <ActivityIndicator color='white' className='px-4' />
+        ) : (
+          <Text className='text-white font-medium tracking-wider'>Submit</Text>
+        )}
       </Pressable>
     </ScrollView>
   );

@@ -29,7 +29,7 @@ function SuggestedJobCard({
       <View className='flex-row items-center pr-14'>
         <View className='border-[1px] border-gray-300 rounded-md mr-4'>
           <Image
-            source={require('../../assets/images/trivago.png')}
+            source={require('../../assets/images/job.png')}
             className='w-10 h-10 m-2'
           />
         </View>

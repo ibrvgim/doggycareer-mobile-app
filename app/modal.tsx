@@ -140,7 +140,10 @@ function FiltersModal() {
         filters.publicationDate) && (
         <Pressable
           className='self-end border-[1px] border-cyan-700 px-6 py-2 rounded-md'
-          onPress={() => dispatch(setClearAll())}
+          onPress={() => {
+            dispatch(setClearAll());
+            route.back();
+          }}
         >
           <Text className='text-cyan-700 font-semibold tracking-wide'>
             Clear All

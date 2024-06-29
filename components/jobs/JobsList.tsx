@@ -85,9 +85,9 @@ function JobsList({ jobs }: { jobs: JobType[] | undefined }) {
       if (publicationDate === '24hours')
         return differenceInHours(new Date(), new Date(job.postedAt)) <= 24;
       else if (publicationDate === '7days')
-        return differenceInDays(new Date(), new Date(job.postedAt)) <= 8;
+        return differenceInDays(new Date(), new Date(job.postedAt)) <= 13;
       else if (publicationDate === '14days')
-        return differenceInDays(new Date(), new Date(job.postedAt)) <= 15;
+        return differenceInDays(new Date(), new Date(job.postedAt)) <= 20;
     });
   }
 
@@ -117,7 +117,7 @@ function JobsList({ jobs }: { jobs: JobType[] | undefined }) {
   return (
     <View className='flex-1'>
       <View className='flex-row justify-between items-center bg-blue-50 py-4 px-3'>
-        <Text className='font-medium text-gray-600'>
+        <Text className='font-semibold text-cyan-600'>
           Jobs: {filteredJobs?.length}
         </Text>
         <Pressable

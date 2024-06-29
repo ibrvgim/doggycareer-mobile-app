@@ -1,4 +1,4 @@
-import { Pressable, Text, View } from 'react-native';
+import { ActivityIndicator, Pressable, Text, View } from 'react-native';
 import Input from '../general/Input';
 import {
   AntDesign,
@@ -24,7 +24,7 @@ function ApplyForm({
 }: {
   applyJobID: string | string[] | undefined;
 }) {
-  const { updateApplyJobs } = useUpdateAppliedJob();
+  const { isPending, updateApplyJobs } = useUpdateAppliedJob();
   const { updateSaveJob } = useUpdateSavedJob();
   const { storedJobs } = useGetStoredJobs();
   const [modalVisible, setModalVisible] = useState(false);
@@ -77,7 +77,7 @@ function ApplyForm({
           saved: [...clearedJobs],
         });
       }
-      toggleModalWindow();
+      !isPending && toggleModalWindow();
     }
   }
 
@@ -378,10 +378,15 @@ function ApplyForm({
       <Pressable
         className='bg-cyan-700 px-6 py-3 rounded-md self-end mt-6 mb-6'
         onPress={handleSubmit(submitForm)}
+        disabled={isPending}
       >
-        <Text className='text-white font-medium tracking-wide'>
-          Submit Application
-        </Text>
+        {isPending ? (
+          <ActivityIndicator color='white' className='px-12' />
+        ) : (
+          <Text className='text-white font-medium tracking-wide'>
+            Submit Application
+          </Text>
+        )}
       </Pressable>
 
       <ModalWindow

@@ -8,7 +8,7 @@ function CompanyDetailCard({ job }: { job: JobType }) {
     <View className='flex-row mt-12 border-[1px] border-gray-300 py-4 px-3 rounded-lg'>
       <View className='border-[1px] border-gray-300 rounded-md mr-4 self-center'>
         <Image
-          source={require('../../assets/images/trivago.png')}
+          source={require('../../assets/images/company.png')}
           className='w-14 h-14 m-2'
         />
       </View>

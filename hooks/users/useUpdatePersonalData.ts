@@ -4,11 +4,11 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 export default function useUpdatePersonalData() {
   const queryClient = useQueryClient();
 
-  const { mutate: updateData } = useMutation({
+  const { isPending, mutate: updateData } = useMutation({
     mutationFn: updatePersonalData,
     onSuccess: () =>
       queryClient.invalidateQueries({ queryKey: ['personalData'] }),
   });
 
-  return { updateData };
+  return { isPending, updateData };
 }

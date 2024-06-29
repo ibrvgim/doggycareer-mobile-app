@@ -1,6 +1,6 @@
 import { useUpdateSavedJob } from '@/hooks/jobs/useUpdateStoredJobs';
 import { useRouter } from 'expo-router';
-import { Pressable, Text, View } from 'react-native';
+import { ActivityIndicator, Pressable, Text, View } from 'react-native';
 
 function JobActionButtons({
   savedJobs,
@@ -13,7 +13,7 @@ function JobActionButtons({
 }) {
   const route = useRouter();
   const isSaved = savedJobs?.includes(jobId);
-  const { updateSaveJob } = useUpdateSavedJob();
+  const { isPending, updateSaveJob } = useUpdateSavedJob();
 
   function handleJobSaving() {
     if (userId)
@@ -40,7 +40,12 @@ function JobActionButtons({
         }`}
         onPress={handleJobSaving}
       >
-        {isSaved ? (
+        {isPending ? (
+          <ActivityIndicator
+            color={isSaved ? 'rgb(239 68 68)' : 'rgb(14 116 144)'}
+            size='small'
+          />
+        ) : isSaved ? (
           <Text className='text-red-500 text-[14px] font-medium tracking-wider'>
             Remove My Jobs
           </Text>

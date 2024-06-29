@@ -8,7 +8,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 export function useUpdateSavedJob() {
   const queryClient = useQueryClient();
 
-  const { mutate: updateSaveJob } = useMutation({
+  const { isPending, mutate: updateSaveJob } = useMutation({
     mutationFn: updateSavedJobs,
     onSuccess: () =>
       queryClient.invalidateQueries({ queryKey: ['storedJobs'] }),
@@ -16,13 +16,13 @@ export function useUpdateSavedJob() {
     onError: (error) => console.log(error.message),
   });
 
-  return { updateSaveJob };
+  return { isPending, updateSaveJob };
 }
 
 export function useUpdateAppliedJob() {
   const queryClient = useQueryClient();
 
-  const { mutate: updateApplyJobs } = useMutation({
+  const { isPending, mutate: updateApplyJobs } = useMutation({
     mutationFn: updateAppliedJobs,
     onSuccess: () =>
       queryClient.invalidateQueries({ queryKey: ['storedJobs'] }),
@@ -30,13 +30,13 @@ export function useUpdateAppliedJob() {
     onError: (error) => console.log(error.message),
   });
 
-  return { updateApplyJobs };
+  return { isPending, updateApplyJobs };
 }
 
 export function useUpdateArchiveJob() {
   const queryClient = useQueryClient();
 
-  const { mutate: updateArchiveJob } = useMutation({
+  const { isPending, mutate: updateArchiveJob } = useMutation({
     mutationFn: updateArchiveJobs,
     onSuccess: () =>
       queryClient.invalidateQueries({ queryKey: ['storedJobs'] }),
@@ -44,5 +44,5 @@ export function useUpdateArchiveJob() {
     onError: (error) => console.log(error.message),
   });
 
-  return { updateArchiveJob };
+  return { isPending, updateArchiveJob };
 }
