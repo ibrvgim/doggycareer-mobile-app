@@ -47,11 +47,15 @@ export async function getUserAPI() {
   return user;
 }
 
-export async function updatePersonalInformationAPI(
-  firstName: string,
-  lastName: string,
-  phoneNumber: string
-) {
+export async function updatePersonalInformationAPI({
+  firstName,
+  lastName,
+  phoneNumber,
+}: {
+  firstName?: string;
+  lastName?: string;
+  phoneNumber?: string;
+}) {
   const { data, error } = await supabase.auth.updateUser({
     data: { firstName, lastName, phoneNumber },
   });

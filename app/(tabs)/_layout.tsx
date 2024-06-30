@@ -1,10 +1,13 @@
-import { Tabs, useRouter } from 'expo-router';
+import { Tabs } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
-import { Pressable } from 'react-native';
+import { Pressable, Text } from 'react-native';
+import { useLogoutUser } from '@/hooks/auth/useAuthUser';
+import LoadingScreen from '@/components/general/LoadingScreen';
 
 export default function TabsLayout() {
-  const route = useRouter();
+  const { isPending: isGettingLogout, logoutUser } = useLogoutUser();
 
+  if (isGettingLogout) return <LoadingScreen />;
   return (
     <Tabs
       screenOptions={{
@@ -67,17 +70,16 @@ export default function TabsLayout() {
               color='rgb(8 145 178)'
             />
           ),
-
           headerRight: () => (
             <Pressable
-              className='px-3 text-cyan-600'
-              onPress={() => route.push('/settings')}
+              className='px-4 flex-row'
+              onPress={() => {
+                logoutUser();
+              }}
             >
-              <Ionicons
-                name='settings-outline'
-                size={22}
-                color='rgb(8 145 178)'
-              />
+              <Text className='text-red-500 uppercase text-xs font-bold tracking-wider'>
+                Log Out
+              </Text>
             </Pressable>
           ),
         }}

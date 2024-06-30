@@ -1,9 +1,24 @@
 import {
+  createSavedAppliedJobs,
   updateAppliedJobs,
   updateArchiveJobs,
   updateSavedJobs,
 } from '@/data/jobs/apiSavedAppliedJobs';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+
+export function useCreateStoredJobs() {
+  const queryClient = useQueryClient();
+
+  const { mutate: createStoredJobs } = useMutation({
+    mutationFn: createSavedAppliedJobs,
+    onSuccess: () =>
+      queryClient.invalidateQueries({ queryKey: ['storedJobs'] }),
+
+    onError: (error) => console.log(error.message),
+  });
+
+  return { createStoredJobs };
+}
 
 export function useUpdateSavedJob() {
   const queryClient = useQueryClient();

@@ -49,3 +49,17 @@ export interface QuestionnaireType {
   industry: string[];
   email: string;
 }
+
+// USER TYPE
+export interface UserType {
+  id: string;
+  email?: string;
+  user_metadata: UserMetaData;
+}
+
+export interface UserMetaData {
+  email?: string;
+  firstName?: string;
+  lastName?: string;
+  phoneNumber?: string;
+}

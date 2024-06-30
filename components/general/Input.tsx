@@ -1,4 +1,4 @@
-import { KeyboardAvoidingView, TextInput, View } from 'react-native';
+import { TextInput, View } from 'react-native';
 
 function Input({
   icon,

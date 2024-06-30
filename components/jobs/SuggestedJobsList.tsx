@@ -21,7 +21,6 @@ function SuggestedJobsList({ jobId }: { jobId: string }) {
             <SuggestedJobCard
               key={job.id}
               jobID={job?.id}
-              image={job?.logo}
               title={job?.jobTitle}
               companyName={job?.companyName}
               location={job?.location}

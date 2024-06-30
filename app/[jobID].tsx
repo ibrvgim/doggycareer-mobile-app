@@ -9,7 +9,7 @@ import { useGetUser } from '@/hooks/auth/useGetUser';
 import useGetSingleJobs from '@/hooks/jobs/useGetSingleJob';
 import useGetStoredJobs from '@/hooks/jobs/useGetStoredJobs';
 import { jobPosted } from '@/utilities/jobPosted';
-import { useLocalSearchParams, useRouter } from 'expo-router';
+import { Redirect, useLocalSearchParams, useRouter } from 'expo-router';
 import { Pressable, ScrollView, Text, View } from 'react-native';
 import { FontAwesome6 } from '@expo/vector-icons';
 
@@ -26,6 +26,7 @@ function JobDetailsScreen() {
   const isApplied = currentUserStoredJobs?.appliedJobs.includes(jobID);
   const isArchived = currentUserStoredJobs?.archive.includes(jobID);
 
+  if (getUser?.role !== 'authenticated') Redirect({ href: '(auth)' });
   if (!jobID) return;
   if (iSGettingJob || isGettingUser || isGettingStoredJobs)
     return <LoadingScreen />;

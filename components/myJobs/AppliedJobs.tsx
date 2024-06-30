@@ -37,7 +37,6 @@ function AppliedJobs({ appliedJobs }: { appliedJobs: string[] }) {
         renderItem={({ item }) => (
           <SuggestedJobCard
             jobID={item?.id}
-            image={item?.logo}
             title={item?.jobTitle}
             companyName={item?.companyName}
             location={item?.location}

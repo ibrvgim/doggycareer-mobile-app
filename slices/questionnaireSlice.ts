@@ -42,9 +42,17 @@ export const questionnaireSlice = createSlice({
     setEmail: (state, action) => {
       state.email = action.payload;
     },
+
+    setClearAll: () => initialState,
   },
 });
 
-export const { setJobType, setOfficeType, setLocation, setIndustry, setEmail } =
-  questionnaireSlice.actions;
+export const {
+  setJobType,
+  setOfficeType,
+  setLocation,
+  setIndustry,
+  setEmail,
+  setClearAll,
+} = questionnaireSlice.actions;
 export default questionnaireSlice.reducer;

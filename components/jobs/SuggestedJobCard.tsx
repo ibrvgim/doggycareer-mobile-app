@@ -4,7 +4,6 @@ import { useRouter } from 'expo-router';
 
 function SuggestedJobCard({
   jobID,
-  image,
   title,
   companyName,
   location,
@@ -12,7 +11,6 @@ function SuggestedJobCard({
   postedAt,
 }: {
   jobID: number;
-  image: string;
   title: string;
   companyName: string;
   location: string;

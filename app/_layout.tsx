@@ -49,13 +49,7 @@ export default function RootLayout() {
               headerBackTitleVisible: false,
             }}
           />
-          <Stack.Screen
-            name='settings'
-            options={{
-              headerTitle: 'Settings',
-              headerBackTitleVisible: false,
-            }}
-          />
+
           <Stack.Screen
             name='modal'
             options={{

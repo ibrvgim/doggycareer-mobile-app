@@ -5,6 +5,7 @@ import MyJobsTab from '@/components/myJobs/MyJobsTab';
 import SavedJobs from '@/components/myJobs/SavedJobs';
 import { useGetUser } from '@/hooks/auth/useGetUser';
 import useGetStoredJobs from '@/hooks/jobs/useGetStoredJobs';
+import { Redirect } from 'expo-router';
 import { useState } from 'react';
 import { StatusBar, View } from 'react-native';
 
@@ -12,6 +13,7 @@ function MyJobsScreen() {
   const [myJobs, setMyJobs] = useState('saved');
   const { isPending: isGettingStoredJobs, storedJobs } = useGetStoredJobs();
   const { isPending: isGettingUser, getUser } = useGetUser();
+  if (getUser?.role !== 'authenticated') Redirect({ href: '(auth)' });
 
   function handleSavedJobs() {
     setMyJobs('saved');

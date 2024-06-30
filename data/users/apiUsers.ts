@@ -23,7 +23,7 @@ export async function updatePersonalData({
   updatedData,
 }: {
   id: string;
-  updatedData: { questionnaire: QuestionnaireType };
+  updatedData: { questionnaire: QuestionnaireType | null };
 }) {
   const { data, error } = await supabase
     .from('users')

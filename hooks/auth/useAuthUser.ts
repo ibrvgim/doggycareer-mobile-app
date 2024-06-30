@@ -1,7 +1,14 @@
-import { createUserAPI, loginUserAPI } from '@/data/auth/apiAuth';
-import { useMutation } from '@tanstack/react-query';
+import {
+  createUserAPI,
+  loginUserAPI,
+  logoutUserAPI,
+  updatePersonalInformationAPI,
+} from '@/data/auth/apiAuth';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'expo-router';
 import { Alert } from 'react-native';
+import { useCreatePersonalData } from '../users/useUpdatePersonalData';
+import { useCreateStoredJobs } from '../jobs/useUpdateStoredJobs';
 
 // LOGIN USER
 export function useLoginUser() {
@@ -23,13 +30,45 @@ export function useLoginUser() {
 // SIGNUP USER
 export function useSignupUser() {
   const route = useRouter();
+  const { createData } = useCreatePersonalData();
+  const { createStoredJobs } = useCreateStoredJobs();
 
   const { isPending, mutate: createUser } = useMutation({
     mutationFn: createUserAPI,
 
-    onSuccess: () => route.replace('jobs'),
+    onSuccess: (data) => {
+      if (data.session?.access_token) {
+        console.log(data?.user?.id);
+        createData(data?.user?.id as string);
+        createStoredJobs(data?.user?.id as string);
+        route.replace('jobs');
+      }
+    },
     onError: (error) => console.log(error.message),
   });
 
   return { isPending, createUser };
+}
+
+// LOGOUT USER
+export function useLogoutUser() {
+  const { isPending, mutate: logoutUser } = useMutation({
+    mutationFn: logoutUserAPI,
+    onError: (error) => console.log(error.message),
+  });
+
+  return { isPending, logoutUser };
+}
+
+// UPDATE USER
+export function useUpdateUserData() {
+  const queryClient = useQueryClient();
+
+  const { isPending, mutate: updateUserData } = useMutation({
+    mutationFn: updatePersonalInformationAPI,
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['user'] }),
+    onError: (error) => console.log(error.message),
+  });
+
+  return { isPending, updateUserData };
 }

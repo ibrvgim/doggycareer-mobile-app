@@ -1,5 +1,17 @@
-import { updatePersonalData } from '@/data/users/apiUsers';
+import { createPersonalData, updatePersonalData } from '@/data/users/apiUsers';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+
+export function useCreatePersonalData() {
+  const queryClient = useQueryClient();
+
+  const { mutate: createData } = useMutation({
+    mutationFn: createPersonalData,
+    onSuccess: () =>
+      queryClient.invalidateQueries({ queryKey: ['personalData'] }),
+  });
+
+  return { createData };
+}
 
 export default function useUpdatePersonalData() {
   const queryClient = useQueryClient();
