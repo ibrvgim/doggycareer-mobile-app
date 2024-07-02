@@ -26,7 +26,10 @@ For the server part SUPABASE was used: https://supabase.com/
 
 ### Demo File & Video
 
-[!APK File](https://drive.google.com/file/d/18TSJ08ZUm_AA180Nge0Um4eNpPzvqBoZ/view?usp=sharing)
+https://github.com/ibrvgim/doggycareer-mobile-app/assets/133496723/33fd3f79-fd5e-4fb5-a8ce-46113e7413dd
+
+
+[APK File](https://drive.google.com/file/d/18TSJ08ZUm_AA180Nge0Um4eNpPzvqBoZ/view?usp=sharing)
 
 ## AUTHOR
 
