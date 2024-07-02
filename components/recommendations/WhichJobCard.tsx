@@ -1,8 +1,9 @@
 import { setIndustry } from '@/slices/questionnaireSlice';
 import { QuestionnaireType } from '@/types/types';
-import { Pressable, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { useDispatch } from 'react-redux';
 import IndustryInput from './IndustryInput';
+import PressableCustom from '../general/Pressable';
 
 function WhichJobCard({ questionnaire }: { questionnaire: QuestionnaireType }) {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ function WhichJobCard({ questionnaire }: { questionnaire: QuestionnaireType }) {
       </Text>
       <View className='flex-row flex-wrap mb-3 ml-1 gap-x-1 gap-y-2'>
         {questionnaire?.industry.map((industry) => (
-          <Pressable
+          <PressableCustom
             key={industry}
             className='bg-cyan-50 border-[1px] border-cyan-700 rounded-full px-6 py-1'
             onPress={() => handleDelete(industry)}
@@ -26,7 +27,7 @@ function WhichJobCard({ questionnaire }: { questionnaire: QuestionnaireType }) {
             <Text className='font-medium text-cyan-700 tracking-wide'>
               {industry}
             </Text>
-          </Pressable>
+          </PressableCustom>
         ))}
       </View>
       <IndustryInput />

@@ -3,7 +3,8 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Provider } from 'react-redux';
 import store from './store';
 import Toast from 'react-native-toast-message';
-import { Platform, Pressable, Text } from 'react-native';
+import { Platform, Text } from 'react-native';
+import PressableCustom from '@/components/general/Pressable';
 
 const queryClient = new QueryClient();
 
@@ -33,11 +34,11 @@ export default function RootLayout() {
               presentation: 'modal',
               headerRight: () => {
                 return Platform.OS === 'ios' ? (
-                  <Pressable onPress={() => route.back()}>
+                  <PressableCustom onPress={() => route.back()}>
                     <Text className='text-base font-semibold text-cyan-700'>
                       Close
                     </Text>
-                  </Pressable>
+                  </PressableCustom>
                 ) : null;
               },
             }}

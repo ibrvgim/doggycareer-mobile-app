@@ -1,5 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
-import { FlatList, Pressable, Text, View } from 'react-native';
+import { FlatList, Text, View } from 'react-native';
 import JobCard from './JobCard';
 import { jobPosted } from '@/utilities/jobPosted';
 import { FiltersType, JobType } from '@/types/types';
@@ -9,6 +9,7 @@ import { differenceInDays, differenceInHours } from 'date-fns';
 import JobsEmptyCard from './JobsEmptyCard';
 import useGetStoredJobs from '@/hooks/jobs/useGetStoredJobs';
 import { useGetUser } from '@/hooks/auth/useGetUser';
+import PressableCustom from '../general/Pressable';
 
 function JobsList({ jobs }: { jobs: JobType[] | undefined }) {
   const route = useRouter();
@@ -120,13 +121,13 @@ function JobsList({ jobs }: { jobs: JobType[] | undefined }) {
         <Text className='font-semibold text-cyan-600'>
           Jobs: {filteredJobs?.length}
         </Text>
-        <Pressable
+        <PressableCustom
           className='flex-row items-center gap-2'
           onPress={() => route.push('modal')}
         >
           <Ionicons name='filter-outline' size={18} color='rgb(8 145 178)' />
           <Text className='font-medium text-cyan-600'>Filters</Text>
-        </Pressable>
+        </PressableCustom>
       </View>
 
       <FlatList

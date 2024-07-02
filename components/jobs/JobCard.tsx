@@ -1,10 +1,10 @@
-import { Image, Pressable, Text, View } from 'react-native';
+import { Image, Text, View } from 'react-native';
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
+import PressableCustom from '../general/Pressable';
 
 function JobCard({
   jobID,
-  image,
   title,
   companyName,
   location,
@@ -24,7 +24,7 @@ function JobCard({
   const route = useRouter();
 
   return (
-    <Pressable
+    <PressableCustom
       className='bg-white p-5 border-b-[1px] border-b-gray-200 flex-row items-center'
       onPress={() => route.push(`${jobID}`)}
     >
@@ -77,7 +77,7 @@ function JobCard({
           </View>
         </View>
       </View>
-    </Pressable>
+    </PressableCustom>
   );
 }
 

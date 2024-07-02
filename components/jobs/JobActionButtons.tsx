@@ -1,6 +1,7 @@
 import { useUpdateSavedJob } from '@/hooks/jobs/useUpdateStoredJobs';
 import { useRouter } from 'expo-router';
-import { ActivityIndicator, Pressable, Text, View } from 'react-native';
+import { ActivityIndicator, Text, View } from 'react-native';
+import PressableCustom from '../general/Pressable';
 
 function JobActionButtons({
   savedJobs,
@@ -8,15 +9,15 @@ function JobActionButtons({
   userId,
 }: {
   savedJobs: string[];
-  jobId: string;
+  jobId: string | undefined;
   userId: string | undefined;
 }) {
   const route = useRouter();
-  const isSaved = savedJobs?.includes(jobId);
+  const isSaved = savedJobs?.includes(jobId as string);
   const { isPending, updateSaveJob } = useUpdateSavedJob();
 
   function handleJobSaving() {
-    if (userId)
+    if (userId && jobId)
       if (savedJobs.includes(jobId)) {
         const clearedJobs = savedJobs.filter((job: string) => job !== jobId);
         updateSaveJob({ userId, saved: clearedJobs });
@@ -25,16 +26,16 @@ function JobActionButtons({
 
   return (
     <View className='mt-8 flex-row'>
-      <Pressable
+      <PressableCustom
         className='flex-1 bg-cyan-700 text-center py-2 rounded-full items-center justify-center mr-2'
         onPress={() => route.push(`(apply)/${jobId}`)}
       >
         <Text className='text-gray-100 text-[15px] font-medium tracking-wider'>
           Apply Now
         </Text>
-      </Pressable>
+      </PressableCustom>
 
-      <Pressable
+      <PressableCustom
         className={`flex-1 border-[1px] text-center py-1 rounded-full items-center justify-center ${
           isSaved ? 'border-red-500' : 'border-cyan-700'
         }`}
@@ -54,7 +55,7 @@ function JobActionButtons({
             Save
           </Text>
         )}
-      </Pressable>
+      </PressableCustom>
     </View>
   );
 }

@@ -1,15 +1,9 @@
-import {
-  Pressable,
-  SafeAreaView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import { SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native';
 import LoginInputsContainer from '@/components/auth/LoginInputsContainer';
 import AuthLogo from '@/components/auth/AuthLogo';
 import KeyboardDismiss from '@/components/general/KeyboardDismiss';
 import { useRouter } from 'expo-router';
+import PressableCustom from '@/components/general/Pressable';
 
 function LoginScreen() {
   const route = useRouter();
@@ -21,6 +15,7 @@ function LoginScreen() {
         style={styles.androidSafeArea}
       >
         <StatusBar barStyle={'dark-content'} />
+
         <AuthLogo />
         <LoginInputsContainer />
 
@@ -29,14 +24,14 @@ function LoginScreen() {
             Don't have an account yet?
           </Text>
 
-          <Pressable
+          <PressableCustom
             onPress={() => route.push('signup')}
             className='border-[1px] border-cyan-700 rounded-full px-6 py-[1px] '
           >
             <Text className='uppercase tracking-wide text-xs text-cyan-700 font-medium'>
               Sign Up
             </Text>
-          </Pressable>
+          </PressableCustom>
         </View>
       </SafeAreaView>
     </KeyboardDismiss>

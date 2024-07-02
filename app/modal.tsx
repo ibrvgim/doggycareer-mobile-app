@@ -1,4 +1,4 @@
-import { Pressable, ScrollView, Text } from 'react-native';
+import { ScrollView, Text } from 'react-native';
 import { FontAwesome, FontAwesome5, FontAwesome6 } from '@expo/vector-icons';
 import { useNavigation, useRouter } from 'expo-router';
 import { useEffect } from 'react';
@@ -13,6 +13,7 @@ import {
   setPublicationDate,
   setSortBy,
 } from '@/slices/filtersSlice';
+import PressableCustom from '@/components/general/Pressable';
 
 function FiltersModal() {
   const route = useRouter();
@@ -25,11 +26,11 @@ function FiltersModal() {
   useEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <Pressable onPress={() => route.back()}>
+        <PressableCustom onPress={() => route.back()}>
           <Text className='font-semibold text-cyan-700 text-base tracking-wider'>
             Done
           </Text>
-        </Pressable>
+        </PressableCustom>
       ),
     });
   }, []);
@@ -138,7 +139,7 @@ function FiltersModal() {
         filters.sortBy ||
         filters.officeType ||
         filters.publicationDate) && (
-        <Pressable
+        <PressableCustom
           className='self-end border-[1px] border-cyan-700 px-6 py-2 rounded-md'
           onPress={() => {
             dispatch(setClearAll());
@@ -148,7 +149,7 @@ function FiltersModal() {
           <Text className='text-cyan-700 font-semibold tracking-wide'>
             Clear All
           </Text>
-        </Pressable>
+        </PressableCustom>
       )}
     </ScrollView>
   );

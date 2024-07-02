@@ -1,8 +1,9 @@
-import { Pressable, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { useDispatch } from 'react-redux';
 import { setClear } from '@/slices/searchSystemSlice';
+import PressableCustom from './Pressable';
 
 function SearchingSystem({
   searches,
@@ -15,7 +16,7 @@ function SearchingSystem({
   return (
     <View className='px-4 py-6 bg-blue-50 border-b-[1px] border-b-gray-300'>
       <View className='flex-row w-full '>
-        <Pressable
+        <PressableCustom
           className='flex-1 overflow-hidden rounded-l-full border-r-[1px] border-r-gray-300'
           onPress={() =>
             route.push({
@@ -40,9 +41,9 @@ function SearchingSystem({
               </Text>
             )}
           </View>
-        </Pressable>
+        </PressableCustom>
 
-        <Pressable
+        <PressableCustom
           className='flex-1 overflow-hidden rounded-r-full'
           onPress={() =>
             route.push({
@@ -68,18 +69,18 @@ function SearchingSystem({
               </Text>
             )}
           </View>
-        </Pressable>
+        </PressableCustom>
       </View>
 
       {(searches.title || searches.region) && (
-        <Pressable
+        <PressableCustom
           className='mt-3 mr-2 self-end'
           onPress={() => dispatch(setClear())}
         >
           <Text className='font-medium tracking-wide text-cyan-700'>
             Clear All
           </Text>
-        </Pressable>
+        </PressableCustom>
       )}
     </View>
   );

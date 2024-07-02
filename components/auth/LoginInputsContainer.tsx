@@ -1,9 +1,10 @@
-import { ActivityIndicator, Pressable, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import AuthInput from './AuthInput';
 import { Ionicons } from '@expo/vector-icons';
 import { useForm, Controller } from 'react-hook-form';
 import { LoginType } from '@/types/types';
 import { useLoginUser } from '@/hooks/auth/useAuthUser';
+import Button from '../general/Button';
 
 function LoginInputsContainer() {
   const { isPending, loginUser } = useLoginUser();
@@ -92,18 +93,11 @@ function LoginInputsContainer() {
         name='password'
       />
 
-      <Pressable
-        className='self-end border-[1px] border-cyan-700 bg-cyan-700 px-10 py-2 mt-3 rounded-md'
-        style={isPending ? { opacity: 0.7 } : {}}
-        onPress={handleSubmit(onSubmit)}
-        disabled={isPending}
-      >
-        {isPending ? (
-          <ActivityIndicator color='white' className='px-4' />
-        ) : (
-          <Text className='text-white font-medium tracking-wide'>Continue</Text>
-        )}
-      </Pressable>
+      <View className='mt-3'>
+        <Button isPending={isPending} onClick={handleSubmit(onSubmit)}>
+          Continue
+        </Button>
+      </View>
     </View>
   );
 }

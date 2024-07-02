@@ -2,8 +2,9 @@ import useUpdatePersonalData from '@/hooks/users/useUpdatePersonalData';
 import { setClearAll } from '@/slices/questionnaireSlice';
 import { QuestionnaireType } from '@/types/types';
 import { Ionicons } from '@expo/vector-icons';
-import { Pressable, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { useDispatch } from 'react-redux';
+import PressableCustom from '../general/Pressable';
 
 function JobPreferencesCard({
   currentUserData,
@@ -23,12 +24,12 @@ function JobPreferencesCard({
 
   return (
     <View className='border-[1px] border-cyan-600 px-5 pt-4 pb-2 mb-3 rounded-lg relative'>
-      <Pressable
+      <PressableCustom
         className='absolute top-3 -right-3 px-6 rounded-full'
         onPress={deleteQuestionnaire}
       >
         <Ionicons name='close' size={25} color='rgb(8 145 178)' />
-      </Pressable>
+      </PressableCustom>
 
       {currentUserData?.questionnaire.jobType && (
         <Text className='font-medium tracking-widest text-cyan-600 mb-2 mr-6'>

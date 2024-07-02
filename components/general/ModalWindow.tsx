@@ -1,6 +1,7 @@
 import { AntDesign } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
-import { Modal, Text, Pressable, View } from 'react-native';
+import { Modal, Text, View } from 'react-native';
+import PressableCustom from './Pressable';
 
 function ModalWindow({
   modalVisible,
@@ -35,14 +36,14 @@ function ModalWindow({
               you with updates regarding the next steps in the hiring process.
             </Text>
 
-            <Pressable
+            <PressableCustom
               className='bg-cyan-700 py-2 rounded-full'
               onPress={handleClose}
             >
               <Text className='tracking-wider text-center text-white font-semibold'>
                 Close
               </Text>
-            </Pressable>
+            </PressableCustom>
           </View>
         </View>
       </Modal>

@@ -3,8 +3,9 @@ import { setTitle } from '@/slices/searchSystemSlice';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { useEffect, useRef, useState } from 'react';
-import { Pressable, Text, TextInput, View } from 'react-native';
+import { Text, TextInput, View } from 'react-native';
 import { useDispatch } from 'react-redux';
+import PressableCustom from '../general/Pressable';
 
 function SearchJobTitle() {
   const route = useRouter();
@@ -61,13 +62,13 @@ function InputOptions({
   return (
     <View className='bg-gray-100 rounded-b-xl rounded-t-md absolute w-full top-4 border-[1px] border-b-0 overflow-hidden border-gray-300 pt-8 z-10'>
       {getSomeIndustries?.map((title: string) => (
-        <Pressable
+        <PressableCustom
           key={title}
           className='border-b-[1px] border-b-gray-300 py-3 px-4'
           onPress={() => handleTitle(title)}
         >
           <Text className='text-base text-gray-500 font-medium'>{title}</Text>
-        </Pressable>
+        </PressableCustom>
       ))}
     </View>
   );

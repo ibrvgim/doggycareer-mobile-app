@@ -1,5 +1,6 @@
 import { useRouter } from 'expo-router';
-import { Image, Pressable, Text, View } from 'react-native';
+import { Image, Text, View } from 'react-native';
+import PressableCustom from '../general/Pressable';
 
 function JobsEmptyCard() {
   const route = useRouter();
@@ -18,14 +19,14 @@ function JobsEmptyCard() {
         Try changing your settings to get a wider variety of jobs.
       </Text>
 
-      <Pressable
+      <PressableCustom
         className='border-[1px] border-cyan-700 px-8 py-1 rounded-md mt-6'
         onPress={() => route.push('modal')}
       >
         <Text className='font-semibold text-base text-cyan-600 tracking-wide'>
           Filters
         </Text>
-      </Pressable>
+      </PressableCustom>
     </View>
   );
 }

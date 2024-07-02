@@ -1,4 +1,4 @@
-import { ActivityIndicator, Pressable, Text, View } from 'react-native';
+import { ActivityIndicator, Text, View } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import {
   useUpdateAppliedJob,
@@ -6,8 +6,9 @@ import {
 } from '@/hooks/jobs/useUpdateStoredJobs';
 import { useGetUser } from '@/hooks/auth/useGetUser';
 import useGetStoredJobs from '@/hooks/jobs/useGetStoredJobs';
+import PressableCustom from '../general/Pressable';
 
-function JobArchiveAction({ jobID }: { jobID: string }) {
+function JobArchiveAction({ jobID }: { jobID: string | undefined }) {
   const { getUser } = useGetUser();
   const { storedJobs } = useGetStoredJobs();
   const { isPending, updateArchiveJob } = useUpdateArchiveJob();
@@ -42,7 +43,7 @@ function JobArchiveAction({ jobID }: { jobID: string }) {
         </Text>
       </View>
 
-      <Pressable
+      <PressableCustom
         className='bg-gray-600 text-center py-2 rounded-full items-center mr-2'
         onPress={handleArchive}
       >
@@ -53,7 +54,7 @@ function JobArchiveAction({ jobID }: { jobID: string }) {
             Move to Archive
           </Text>
         )}
-      </Pressable>
+      </PressableCustom>
     </View>
   );
 }

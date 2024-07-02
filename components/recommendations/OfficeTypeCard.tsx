@@ -12,7 +12,7 @@ function OfficeTypeCard({
   const dispatch = useDispatch();
 
   return (
-    <View className='border-[1px] border-slate-300 rounded-lg px-4 py-5 mb-10 -z-20'>
+    <View className='border-[1px] border-slate-300 rounded-lg px-4 py-5 mb-6 -z-20'>
       <Text className='text-lg   font-semibold text-cyan-700 opacity-80 mb-6'>
         What environment do you want to work in?
       </Text>

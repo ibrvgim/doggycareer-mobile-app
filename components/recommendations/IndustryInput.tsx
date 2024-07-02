@@ -2,8 +2,9 @@ import { allIndustries } from '@/data/general/getIndustries';
 import { setIndustry } from '@/slices/questionnaireSlice';
 import { QuestionnaireType } from '@/types/types';
 import { useState } from 'react';
-import { Pressable, Text, TextInput, View } from 'react-native';
+import { Text, TextInput, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
+import PressableCustom from '../general/Pressable';
 
 function IndustryInput() {
   const questionnaire = useSelector(
@@ -65,7 +66,7 @@ function InputOptions({
   return (
     <View className='bg-gray-100 rounded-b-xl rounded-t-md absolute w-full top-4 border-[1px] border-b-0 overflow-hidden border-gray-300 pt-8 z-10'>
       {getSomeIndustries?.map((industry: string) => (
-        <Pressable
+        <PressableCustom
           key={industry}
           className='border-b-[1px] border-b-gray-300 py-3 px-4'
           onPress={() => handleIndustry(industry)}
@@ -73,7 +74,7 @@ function InputOptions({
           <Text className='text-[15px] text-gray-500 font-medium'>
             {industry}
           </Text>
-        </Pressable>
+        </PressableCustom>
       ))}
     </View>
   );

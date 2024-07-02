@@ -1,4 +1,4 @@
-import { ActivityIndicator, Pressable, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import Input from '../general/Input';
 import {
   AntDesign,
@@ -18,6 +18,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { useGetUser } from '@/hooks/auth/useGetUser';
 import { useGetPersonalData } from '@/hooks/users/useGetPersonalData';
 import LoadingScreen from '../general/LoadingScreen';
+import Button from '../general/Button';
 
 function ApplyForm({
   applyJobID,
@@ -375,19 +376,11 @@ function ApplyForm({
         />
       </View>
 
-      <Pressable
-        className='bg-cyan-700 px-6 py-3 rounded-md self-end mt-6 mb-6'
-        onPress={handleSubmit(submitForm)}
-        disabled={isPending}
-      >
-        {isPending ? (
-          <ActivityIndicator color='white' className='px-12' />
-        ) : (
-          <Text className='text-white font-medium tracking-wide'>
-            Submit Application
-          </Text>
-        )}
-      </Pressable>
+      <View className='mt-6 mb-12'>
+        <Button isPending={isPending} onClick={handleSubmit(submitForm)}>
+          Submit Application
+        </Button>
+      </View>
 
       <ModalWindow
         modalVisible={modalVisible}

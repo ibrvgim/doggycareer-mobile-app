@@ -1,4 +1,4 @@
-import { ActivityIndicator, Pressable, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import AuthInput from './AuthInput';
 import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
@@ -6,8 +6,8 @@ import { FontAwesome } from '@expo/vector-icons';
 import { Controller, useForm } from 'react-hook-form';
 import { useSignupUser } from '@/hooks/auth/useAuthUser';
 import { SignupType } from '@/types/types';
+import Button from '../general/Button';
 
-// don't forget to add new rows to tables that demands at initial creation
 function SignupInputsContainer() {
   const { isPending, createUser } = useSignupUser();
   const {
@@ -215,20 +215,11 @@ function SignupInputsContainer() {
         name='confirmPassword'
       />
 
-      <Pressable
-        className='self-end border-[1px] border-cyan-700 bg-cyan-700 px-8 py-2 mt-3 rounded-md'
-        style={isPending ? { opacity: 0.7 } : {}}
-        onPress={handleSubmit(onSubmit)}
-        disabled={isPending}
-      >
-        {isPending ? (
-          <ActivityIndicator color='white' className='px-10' />
-        ) : (
-          <Text className='text-white font-medium tracking-wide'>
-            Create Account
-          </Text>
-        )}
-      </Pressable>
+      <View className='mt-3'>
+        <Button isPending={isPending} onClick={handleSubmit(onSubmit)}>
+          Create Account
+        </Button>
+      </View>
     </View>
   );
 }

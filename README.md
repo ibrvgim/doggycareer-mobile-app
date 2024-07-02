@@ -1,50 +1,33 @@
-# Welcome to your Expo app 👋
+# DOGGYCAREER MOBILE APP: DISCOVER YOUR DREAM JOB
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Welcome to DoggyCareer, your job search platform for diverse career opportunities. Whether you're looking for your next big break or just starting your professional journey, DoggyCareer connects you with top employers and the latest job listings across various industries. Find your dream job with our user-friendly search tools, personalized job recommendations, and career resources. Start your path to success with DoggyCareer today!
 
-## Get started
+> [!NOTE]
+> It's a Demo Website, for this reason:
+>
+> - The file attachment feature is disabled to avoid privacy issues for people.
+> - Since the number of Jobs is limited, some filters have been adjusted to account for this issue.
 
-1. Install dependencies
+## OVERVIEW
 
-   ```bash
-   npm install
-   ```
+### Technologies used to build
 
-2. Start the app
+- React Native - https://reactnative.dev/
+- EXPO - https://docs.expo.dev/
+- TypeScript - https://www.typescriptlang.org/
+- TanStack Query - https://tanstack.com/query/latest
+- Redux Toolkit - https://redux.js.org/
+- NativeWind (Tailwind) - https://www.nativewind.dev/
+- React Hook Form - https://www.react-hook-form.com/
+- EXPO Icons - https://icons.expo.fyi/Index
+- Date FNS - https://date-fns.org/
 
-   ```bash
-    npx expo start
-   ```
+For the server part SUPABASE was used: https://supabase.com/
 
-In the output, you'll find options to open the app in a
+### Demo File & Video
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+[!APK File](https://drive.google.com/file/d/18TSJ08ZUm_AA180Nge0Um4eNpPzvqBoZ/view?usp=sharing)
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## AUTHOR
 
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Created & Designed by - Ibrahim Ismayilov.

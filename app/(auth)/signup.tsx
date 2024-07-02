@@ -1,15 +1,9 @@
 import AuthLogo from '@/components/auth/AuthLogo';
 import SignupInputsContainer from '@/components/auth/SignupInputsContainer';
 import KeyboardDismiss from '@/components/general/KeyboardDismiss';
+import PressableCustom from '@/components/general/Pressable';
 import { useRouter } from 'expo-router';
-import {
-  Pressable,
-  SafeAreaView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import { SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native';
 
 function SignupScreen() {
   const route = useRouter();
@@ -28,14 +22,14 @@ function SignupScreen() {
           <Text className='text-base text-cyan-700 font-medium mr-3'>
             Already have an account?
           </Text>
-          <Pressable
+          <PressableCustom
             onPress={() => route.back()}
             className='border-[1px] border-cyan-700 rounded-full px-6 py-[1px] '
           >
             <Text className='uppercase tracking-wide text-xs text-cyan-700 font-medium'>
               Log In
             </Text>
-          </Pressable>
+          </PressableCustom>
         </View>
       </SafeAreaView>
     </KeyboardDismiss>

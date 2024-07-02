@@ -1,8 +1,9 @@
 import { Tabs } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
-import { Pressable, Text } from 'react-native';
+import { Text } from 'react-native';
 import { useLogoutUser } from '@/hooks/auth/useAuthUser';
 import LoadingScreen from '@/components/general/LoadingScreen';
+import PressableCustom from '@/components/general/Pressable';
 
 export default function TabsLayout() {
   const { isPending: isGettingLogout, logoutUser } = useLogoutUser();
@@ -71,7 +72,7 @@ export default function TabsLayout() {
             />
           ),
           headerRight: () => (
-            <Pressable
+            <PressableCustom
               className='px-4 flex-row'
               onPress={() => {
                 logoutUser();
@@ -80,7 +81,7 @@ export default function TabsLayout() {
               <Text className='text-red-500 uppercase text-xs font-bold tracking-wider'>
                 Log Out
               </Text>
-            </Pressable>
+            </PressableCustom>
           ),
         }}
       />

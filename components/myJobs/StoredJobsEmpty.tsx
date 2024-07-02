@@ -1,5 +1,6 @@
 import { useRouter } from 'expo-router';
-import { Pressable, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
+import PressableCustom from '../general/Pressable';
 
 function StoredJobsEmpty({
   children,
@@ -23,12 +24,12 @@ function StoredJobsEmpty({
       </Text>
 
       {description && (
-        <Pressable
+        <PressableCustom
           className='border-[1px] border-cyan-700 py-1 px-6 rounded-full mt-6'
           onPress={() => route.push('jobs')}
         >
           <Text className='text-cyan-700 font-medium'>Search Jobs</Text>
-        </Pressable>
+        </PressableCustom>
       )}
     </View>
   );

@@ -1,8 +1,9 @@
 import { setLocation } from '@/slices/questionnaireSlice';
 import { QuestionnaireType } from '@/types/types';
-import { Pressable, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { useDispatch } from 'react-redux';
 import RegionInput from './RegionInput';
+import PressableCustom from '../general/Pressable';
 
 function WhereWorkCard({
   questionnaire,
@@ -22,7 +23,7 @@ function WhereWorkCard({
       </Text>
       <View className='flex-row flex-wrap mb-3 ml-1 gap-x-1 gap-y-2'>
         {questionnaire?.location.map((city) => (
-          <Pressable
+          <PressableCustom
             key={city}
             className='bg-cyan-50 border-[1px] border-cyan-700 rounded-full px-6 py-1'
             onPress={() => handleDelete(city)}
@@ -30,7 +31,7 @@ function WhereWorkCard({
             <Text className='font-medium text-cyan-700 tracking-wide capitalize'>
               {city}
             </Text>
-          </Pressable>
+          </PressableCustom>
         ))}
       </View>
       <RegionInput />

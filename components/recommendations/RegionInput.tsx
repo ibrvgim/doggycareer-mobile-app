@@ -2,8 +2,9 @@ import useGetCities from '@/hooks/general/useGetCities';
 import { setLocation } from '@/slices/questionnaireSlice';
 import { QuestionnaireType } from '@/types/types';
 import { useState } from 'react';
-import { Pressable, Text, TextInput, View } from 'react-native';
+import { Text, TextInput, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
+import PressableCustom from '../general/Pressable';
 
 function RegionInput() {
   const questionnaire = useSelector(
@@ -67,13 +68,13 @@ function InputOptions({
   return (
     <View className='bg-gray-100 rounded-b-xl rounded-t-md absolute w-full top-4 border-[1px] border-b-0 overflow-hidden border-gray-300 pt-8 z-10'>
       {getSomeCities?.map((city: string) => (
-        <Pressable
+        <PressableCustom
           key={city}
           className='border-b-[1px] border-b-gray-300 py-3 px-4'
           onPress={() => handleCity(city)}
         >
           <Text className='text-[15px] text-gray-500 font-medium'>{city}</Text>
-        </Pressable>
+        </PressableCustom>
       ))}
     </View>
   );

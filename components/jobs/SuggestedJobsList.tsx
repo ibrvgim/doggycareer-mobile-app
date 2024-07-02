@@ -4,7 +4,7 @@ import SuggestedJobCard from './SuggestedJobCard';
 import { jobPosted } from '@/utilities/jobPosted';
 import { useGetUser } from '@/hooks/auth/useGetUser';
 
-function SuggestedJobsList({ jobId }: { jobId: string }) {
+function SuggestedJobsList({ jobId }: { jobId: string | undefined }) {
   const { jobs } = useGetJobs();
   const { getUser } = useGetUser();
 
